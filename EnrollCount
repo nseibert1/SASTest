@@ -1,0 +1,13 @@
+libname sasdata 'C:\ENCRYPT\DOTS';
+
+proc sort data=sasdata.enroll out=enroll(keep = subject sitenumber sitegroup); 
+  by subject;
+run;
+
+ods rtf body='C:\ENCRYPT\DOTS\enroll.rtf';
+
+proc freq data=enroll(where = (sitegroup = 'OUS'));
+  tables sitenumber;
+run;
+
+ods rtf close;
